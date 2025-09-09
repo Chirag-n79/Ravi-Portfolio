@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>WELCOME RAVI VO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- jsPDF for profile -> PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <!-- LOGIN OVERLAY -->
+  <div class="login-overlay" id="loginOverlay" aria-hidden="false">
+    <div class="login-card" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <h2 id="loginTitle">Please sign in</h2>
+      <p class="muted">Enter the general password to access your personal document manager.</p>
+
+      <div class="field">
+        <input id="passwordInput" type="password" placeholder="Password" />
+        <button id="pwToggle" class="btn sm" type="button">Show</button>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button id="loginBtn" class="btn">Sign in</button>
+        <button id="cancelBtn" class="btn" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOPBAR (visible on mobile) -->
+  <header class="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+    <h1 class="topbar-title">WELCOME RAVI VO</h1>
+  </header>
+
+  <!-- APP -->
+  <div class="app" id="appRoot" aria-hidden="true" style="display:none;">
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar">
+      <div class="logo">
+        <div class="mark">VO</div>
+        <h1 class="title">WELCOME RAVI VO</h1>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search section..." />
+      </div>
+
+      <nav class="menu" id="menu">
+        <!-- About is always present -->
+        <a href="#" data-section="about" class="active">About</a>
+      </nav>
+
+      <div style="margin-top:auto;display:flex;gap:8px;flex-direction:column;">
+        <button id="logoutBtn" class="btn">Logout</button>
+        <div class="muted" style="font-size:12px;text-align:center">© 2025 RAVI VO</div>
+      </div>
+    </aside>
+
+    <main class="content" id="mainContent">
+      <!-- About / Profile -->
+      <section id="about" class="active">
+        <h2>About Me</h2>
+        <div class="profile-pic" id="profileBox">
+          <div id="placeholder">Upload profile image</div>
+          <img id="profileImage" style="display:none;" alt="Profile preview">
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <label class="btn" for="profileUpload">Upload Profile</label>
+          <input id="profileUpload" type="file" accept="image/*" style="display:none;">
+          <button id="downloadJPG" class="btn" disabled>⬇ JPG</button>
+          <button id="downloadPDF" class="btn" disabled>⬇ PDF</button>
+          <button id="removeProfile" class="btn">Delete Profile</button>
+        </div>
+        <p class="muted" style="margin-top:10px">Profile image is stored locally in your browser (localStorage).</p>
+      </section>
+
+      <!-- Dynamic sections will be inserted here by JS -->
+      <div id="dynamicSections"></div>
+    </main>
+  </div>
+
+  <!-- Viewer -->
+  <div class="viewer" id="viewer" aria-hidden="true">
+    <div class="viewer-box">
+      <div class="viewer-bar">
+        <div class="viewer-title" id="viewerTitle">Preview</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="viewer-close" id="viewerDownload">Download</button>
+          <button class="viewer-close" id="viewerClose">Close ✕</button>
+        </div>
+      </div>
+      <div class="viewer-content" id="viewerContent"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
